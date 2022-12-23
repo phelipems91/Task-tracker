@@ -1,0 +1,51 @@
+<h1>My Tasks</h1><br>
+
+<button type="button" class="btn btn-info"><a href="/create-task"><i class="fa-solid fa-plus"></i>&nbsp;New
+        Task</a></button><br><br><br>
+
+<div class="btn-group  btn-group-lg" role="group">
+    <input type="radio" (change)="handleFilter($event)" class="btn-check" name="btnradio" id="btnactive"
+        autocomplete="off">
+    <label class="btn btn-outline-dark" for="btnactive">Active Tasks</label>
+
+    <input type="radio" (change)="handleFilter($event)" class="btn-check" name="btnradio" id="btnall" autocomplete="off"
+        checked>
+    <label class="btn btn-outline-dark" for="btnall">All Tasks</label>
+</div><br><br>
+
+<div id="tasks">
+    <div *ngFor="let task of tasks">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card card-margin">
+                        <div class="card-body pt-0">
+                            <div class="widget-49">
+                                <div class="widget-49-title-wrapper">
+                                    <div class="widget-49-date-primary">
+                                        <span class="widget-49-date-day">{{convertDateToDay(task.date)}}</span>
+                                        <span class="widget-49-date-month">{{convertDateToMonth(task.date)}}</span>
+                                    </div>
+                                    <div class="widget-49-meeting-info">
+                                        <span class="widget-49-pro-title">{{convertDateToHour(task.date)}}</span>
+                                    </div>
+                                </div>
+                                <ul class="widget-49-meeting-points">
+                                    <li class="widget-49-meeting-item"><span>{{task.text}}</span></li>
+                                </ul>
+                                <div class="widget-49-meeting-action">
+                                    <button type="button" class="btn btn-info"><a href="#"
+                                            [routerLink]="['/edit-task/', task._id]"><i class="fa-regular
+                                                fa-pen-to-square"></i></a></button>
+                                    <button type="button" class="btn btn-danger"
+                                        (click)="confirmDeleteTask(task._id)"><i
+                                            class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
